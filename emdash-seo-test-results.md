@@ -44,9 +44,9 @@ The image problem appeared only in the production build, because development mod
 
 ## Performance
 
-Fixing image optimization cut mobile load time (LCP) by 26% on the home page and 40% on the article page. Page weight fell by more than half on both.
+Fixing image optimization cut mobile load time (LCP) by 26% on the home page and 40% on the article page. Page weight fell by more than half on both. This table compares the same EmDash site with and without that fix. No other CMS was tested.
 
-| Page | LCP before | LCP after | Page weight before | Page weight after | Performance before | Performance after |
+| Page | LCP: default template | LCP: with image fix | Page weight: default template | Page weight: with image fix | Performance score: default template | Performance score: with image fix |
 | --- | --- | --- | --- | --- | --- | --- |
 | Home | 3.1 s | 2.3 s | 1,063 KiB | 423 KiB | 94 | 98 |
 | Article | 5.0 s | 3.0 s | 924 KiB | 411 KiB | 80 | 93 |
