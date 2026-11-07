@@ -1,0 +1,949 @@
+{
+	"$schema": "https://emdashcms.com/seed.schema.json",
+	"version": "1",
+	"meta": {
+		"name": "Crawl Notes",
+		"description": "A technical SEO demo site for testing EmDash",
+		"author": "Demo"
+	},
+	"settings": {
+		"title": "Crawl Notes",
+		"tagline": "Practical notes on technical SEO"
+	},
+	"collections": [
+		{
+			"slug": "posts",
+			"label": "Posts",
+			"labelSingular": "Post",
+			"urlPattern": "/posts/{slug}",
+			"supports": [
+				"drafts",
+				"revisions",
+				"preview",
+				"scheduling",
+				"search",
+				"seo"
+			],
+			"commentsEnabled": true,
+			"fields": [
+				{
+					"slug": "title",
+					"label": "Title",
+					"type": "string",
+					"required": true,
+					"searchable": true
+				},
+				{
+					"slug": "featured_image",
+					"label": "Featured Image",
+					"type": "image"
+				},
+				{
+					"slug": "content",
+					"label": "Content",
+					"type": "portableText",
+					"searchable": true
+				},
+				{
+					"slug": "excerpt",
+					"label": "Excerpt",
+					"type": "text"
+				}
+			]
+		},
+		{
+			"slug": "pages",
+			"label": "Pages",
+			"labelSingular": "Page",
+			"urlPattern": "/pages/{slug}",
+			"supports": [
+				"drafts",
+				"revisions",
+				"preview",
+				"search",
+				"seo"
+			],
+			"fields": [
+				{
+					"slug": "title",
+					"label": "Title",
+					"type": "string",
+					"required": true,
+					"searchable": true
+				},
+				{
+					"slug": "content",
+					"label": "Content",
+					"type": "portableText",
+					"searchable": true
+				}
+			]
+		}
+	],
+	"taxonomies": [
+		{
+			"name": "category",
+			"label": "Categories",
+			"labelSingular": "Category",
+			"hierarchical": true,
+			"collections": [
+				"posts"
+			],
+			"terms": [
+				{
+					"slug": "migrations",
+					"label": "Migrations"
+				},
+				{
+					"slug": "crawling",
+					"label": "Crawling and Indexing"
+				}
+			]
+		},
+		{
+			"name": "tag",
+			"label": "Tags",
+			"labelSingular": "Tag",
+			"hierarchical": false,
+			"collections": [
+				"posts"
+			],
+			"terms": [
+				{
+					"slug": "redirects",
+					"label": "Redirects"
+				},
+				{
+					"slug": "canonicals",
+					"label": "Canonicals"
+				},
+				{
+					"slug": "audits",
+					"label": "Audits"
+				}
+			]
+		}
+	],
+	"bylines": [
+		{
+			"id": "byline-editorial",
+			"slug": "crawl-notes-team",
+			"displayName": "Crawl Notes Team"
+		}
+	],
+	"menus": [
+		{
+			"name": "primary",
+			"label": "Primary Navigation",
+			"items": [
+				{
+					"type": "custom",
+					"label": "Home",
+					"url": "/"
+				},
+				{
+					"type": "custom",
+					"label": "About",
+					"url": "/pages/about"
+				},
+				{
+					"type": "custom",
+					"label": "Posts",
+					"url": "/posts"
+				}
+			]
+		}
+	],
+	"widgetAreas": [
+		{
+			"name": "sidebar",
+			"label": "Sidebar",
+			"description": "Widget area displayed on single post pages",
+			"widgets": [
+				{
+					"type": "component",
+					"componentId": "core:search",
+					"title": "Search"
+				},
+				{
+					"type": "component",
+					"componentId": "core:categories",
+					"title": "Categories"
+				},
+				{
+					"type": "component",
+					"componentId": "core:tags",
+					"title": "Tags"
+				},
+				{
+					"type": "component",
+					"componentId": "core:recent-posts",
+					"title": "Recent Posts",
+					"props": {
+						"count": 5,
+						"showDate": true
+					}
+				},
+				{
+					"type": "component",
+					"componentId": "core:archives",
+					"title": "Archives",
+					"props": {
+						"type": "monthly",
+						"limit": 6
+					}
+				}
+			]
+		},
+		{
+			"name": "footer",
+			"label": "Footer",
+			"description": "Widget area displayed in the site footer",
+			"widgets": [
+				{
+					"type": "content",
+					"title": "About",
+					"content": [
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "A blog about software, design, and the occasional stray thought.",
+									"_key": "k1"
+								}
+							],
+							"_key": "k0"
+						}
+					]
+				}
+			]
+		}
+	],
+	"sections": [
+		{
+			"slug": "newsletter-signup",
+			"title": "Newsletter Signup",
+			"description": "A call-to-action block for newsletter subscriptions",
+			"keywords": [
+				"newsletter",
+				"subscribe",
+				"email",
+				"cta"
+			],
+			"source": "theme",
+			"content": [
+				{
+					"_type": "block",
+					"style": "h3",
+					"children": [
+						{
+							"_type": "span",
+							"text": "Stay in the loop",
+							"_key": "k1"
+						}
+					],
+					"_key": "k0"
+				},
+				{
+					"_type": "block",
+					"style": "normal",
+					"children": [
+						{
+							"_type": "span",
+							"text": "Get notified when new posts are published. No spam, unsubscribe anytime.",
+							"_key": "k3"
+						}
+					],
+					"_key": "k2"
+				}
+			]
+		},
+		{
+			"slug": "about-author",
+			"title": "About the Author",
+			"description": "Brief author bio for use in posts or pages",
+			"keywords": [
+				"author",
+				"bio",
+				"about"
+			],
+			"source": "theme",
+			"content": [
+				{
+					"_type": "block",
+					"style": "normal",
+					"children": [
+						{
+							"_type": "span",
+							"text": "A software developer who writes about building things on the web. Based somewhere with good coffee and reliable internet.",
+							"_key": "k1"
+						}
+					],
+					"_key": "k0"
+				}
+			]
+		}
+	],
+	"content": {
+		"pages": [
+			{
+				"id": "about",
+				"slug": "about",
+				"status": "published",
+				"data": {
+					"title": "About This Demo",
+					"content": [
+						{
+							"_type": "block",
+							"_key": "k69",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k70",
+									"text": "Crawl Notes is a demo site for testing how EmDash handles technical SEO. The articles are real guidance, and some of the site's URLs exist only as test cases."
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "k75",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k72",
+									"text": "All posts are listed on the "
+								},
+								{
+									"_type": "span",
+									"_key": "k73",
+									"text": "posts page",
+									"marks": [
+										"k71"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "k74",
+									"text": "."
+								}
+							],
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "k71",
+									"href": "/posts"
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"posts": [
+			{
+				"id": "post-migration",
+				"slug": "cms-migration-seo-checklist",
+				"status": "published",
+				"data": {
+					"title": "What to Check Before a CMS Migration",
+					"excerpt": "A migration keeps its rankings when URLs, signals and templates are mapped before launch, not repaired after it.",
+					"featured_image": {
+						"$media": {
+							"url": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&h=800&fit=crop",
+							"alt": "Code on a monitor in a dark room",
+							"filename": "migration.jpg"
+						}
+					},
+					"content": [
+						{
+							"_type": "block",
+							"_key": "k1",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k2",
+									"text": "Most migration losses are not caused by the new platform. They come from something the old platform did quietly that nobody wrote down."
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "k3",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k4",
+									"text": "Crawl the old site first"
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "k5",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k6",
+									"text": "Take a full crawl before anything changes. Keep the URL list, status codes, titles, canonicals and internal link counts. That file becomes the test you run against the new site."
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "k7",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k8",
+									"text": "Map every URL that matters"
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "k13",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k10",
+									"text": "Every URL with traffic, links or rankings needs a destination. Read our guide to "
+								},
+								{
+									"_type": "span",
+									"_key": "k11",
+									"text": "redirect mapping",
+									"marks": [
+										"k9"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "k12",
+									"text": " before you write the rules."
+								}
+							],
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "k9",
+									"href": "/posts/redirect-mapping-for-url-changes"
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "k14",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k15",
+									"text": "Compare templates, not just pages"
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "k16",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k17",
+									"text": "Check each template for titles, canonicals, structured data and robots directives. One broken template breaks every page that uses it."
+								}
+							]
+						}
+					]
+				},
+				"taxonomies": {
+					"category": [
+						"migrations"
+					],
+					"tag": [
+						"redirects",
+						"audits"
+					]
+				},
+				"bylines": [
+					{
+						"byline": "byline-editorial"
+					}
+				]
+			},
+			{
+				"id": "post-canonical",
+				"slug": "what-canonical-tags-can-do",
+				"status": "published",
+				"data": {
+					"title": "What Canonical Tags Can and Cannot Do",
+					"excerpt": "A canonical tag is a strong hint about the preferred URL. It is not a directive, and it cannot fix a confused site on its own.",
+					"featured_image": {
+						"$media": {
+							"url": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200&h=800&fit=crop",
+							"alt": "Laptop and coffee on a wooden table",
+							"filename": "canonical.jpg"
+						}
+					},
+					"content": [
+						{
+							"_type": "block",
+							"_key": "k18",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k19",
+									"text": "A canonical tag tells search engines which URL you prefer when several show the same content."
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "k20",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k21",
+									"text": "Why a canonical can be ignored"
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "k22",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k23",
+									"text": "Search engines weigh it against other signals: internal links, redirects, sitemap entries and the content itself. When those disagree, your tag may lose."
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "k24",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k25",
+									"text": "Keep the signals consistent"
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "k30",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k27",
+									"text": "Link to the canonical URL, list only that URL in the sitemap, and redirect obvious duplicates. Our notes on "
+								},
+								{
+									"_type": "span",
+									"_key": "k28",
+									"text": "XML sitemaps",
+									"marks": [
+										"k26"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "k29",
+									"text": " cover the sitemap side."
+								}
+							],
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "k26",
+									"href": "/posts/xml-sitemaps-are-hints"
+								}
+							]
+						}
+					]
+				},
+				"taxonomies": {
+					"category": [
+						"crawling"
+					],
+					"tag": [
+						"canonicals"
+					]
+				},
+				"bylines": [
+					{
+						"byline": "byline-editorial"
+					}
+				]
+			},
+			{
+				"id": "post-robots",
+				"slug": "how-to-read-robots-txt",
+				"status": "published",
+				"data": {
+					"title": "How to Read a robots.txt File",
+					"excerpt": "robots.txt controls crawling, not indexing. Mixing up those two jobs causes many avoidable problems.",
+					"featured_image": {
+						"$media": {
+							"url": "https://images.unsplash.com/photo-1432821596592-e2c18b78144f?w=1200&h=800&fit=crop",
+							"alt": "Notebook and pen on a desk",
+							"filename": "robots.jpg"
+						}
+					},
+					"content": [
+						{
+							"_type": "block",
+							"_key": "k31",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k32",
+									"text": "The file is short, but small mistakes in it can have a large effect on how a site is crawled."
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "k33",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k34",
+									"text": "Crawling is not indexing"
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "k35",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k36",
+									"text": "A blocked URL can still appear in results if other pages link to it. To keep a page out of the index, allow crawling and use a noindex directive."
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "k37",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k38",
+									"text": "Check it on every launch"
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "k43",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k40",
+									"text": "Staging rules often reach production by accident. Add robots.txt to your launch checklist, along with the items in our "
+								},
+								{
+									"_type": "span",
+									"_key": "k41",
+									"text": "CMS migration checklist",
+									"marks": [
+										"k39"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "k42",
+									"text": "."
+								}
+							],
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "k39",
+									"href": "/posts/cms-migration-seo-checklist"
+								}
+							]
+						}
+					]
+				},
+				"taxonomies": {
+					"category": [
+						"crawling"
+					],
+					"tag": [
+						"audits"
+					]
+				},
+				"bylines": [
+					{
+						"byline": "byline-editorial"
+					}
+				]
+			},
+			{
+				"id": "post-redirects",
+				"slug": "redirect-mapping-for-url-changes",
+				"status": "published",
+				"data": {
+					"title": "Redirect Mapping for URL Changes",
+					"excerpt": "Good redirects go straight to the closest matching page, in one hop, with the right status code.",
+					"featured_image": {
+						"$media": {
+							"url": "https://images.unsplash.com/photo-1575026615908-666710ae5e47?w=1200&h=800&fit=crop",
+							"alt": "Wrenches and hand tools hanging on a workshop wall",
+							"filename": "redirects.jpg"
+						}
+					},
+					"content": [
+						{
+							"_type": "block",
+							"_key": "k44",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k45",
+									"text": "A redirect map is a plain table: old URL, new URL and status code. It is dull work, and it protects the value the old URLs built up."
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "k46",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k47",
+									"text": "Choose the closest match"
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "k48",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k49",
+									"text": "Send each old URL to the page that best replaces it. Sending everything to the homepage is often treated as a soft 404."
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "k50",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k51",
+									"text": "Avoid chains"
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "k52",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k53",
+									"text": "Every extra hop adds delay and another chance to fail. After a second migration, update the older rules so they point at the final URL."
+								}
+							]
+						}
+					]
+				},
+				"taxonomies": {
+					"category": [
+						"migrations"
+					],
+					"tag": [
+						"redirects"
+					]
+				},
+				"bylines": [
+					{
+						"byline": "byline-editorial"
+					}
+				]
+			},
+			{
+				"id": "post-sitemaps",
+				"slug": "xml-sitemaps-are-hints",
+				"status": "published",
+				"data": {
+					"title": "XML Sitemaps Are Hints, Not Guarantees",
+					"excerpt": "A sitemap helps discovery. It does not force indexing, so it should list only the URLs you want indexed.",
+					"featured_image": {
+						"$media": {
+							"url": "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=1200&h=800&fit=crop",
+							"alt": "Pencils and design tools on a desk",
+							"filename": "sitemaps.jpg"
+						}
+					},
+					"content": [
+						{
+							"_type": "block",
+							"_key": "k54",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k55",
+									"text": "A sitemap tells search engines which URLs you consider important. Treat it as a clean list, not a dump of the database."
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "k56",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k57",
+									"text": "What belongs in it"
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "k58",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k59",
+									"text": "List indexable, canonical URLs that return 200. Leave out redirects, noindexed pages, drafts and duplicates."
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "k60",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k61",
+									"text": "Use it as a diagnostic"
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "k66",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k63",
+									"text": "Comparing sitemap URLs with indexed URLs shows where a site and search engines disagree. See how this connects to "
+								},
+								{
+									"_type": "span",
+									"_key": "k64",
+									"text": "canonical tags",
+									"marks": [
+										"k62"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "k65",
+									"text": "."
+								}
+							],
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "k62",
+									"href": "/posts/what-canonical-tags-can-do"
+								}
+							]
+						}
+					]
+				},
+				"taxonomies": {
+					"category": [
+						"crawling"
+					],
+					"tag": [
+						"audits",
+						"canonicals"
+					]
+				},
+				"bylines": [
+					{
+						"byline": "byline-editorial"
+					}
+				]
+			},
+			{
+				"id": "post-draft",
+				"slug": "unpublished-draft-fixture",
+				"status": "draft",
+				"data": {
+					"title": "Unpublished Draft Fixture",
+					"excerpt": "If you can read this on the public site, draft handling has failed.",
+					"content": [
+						{
+							"_type": "block",
+							"_key": "k67",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"_key": "k68",
+									"text": "This draft is a test fixture and should never be public."
+								}
+							]
+						}
+					]
+				}
+			}
+		]
+	},
+	"redirects": [
+		{
+			"source": "/about-us",
+			"destination": "/pages/about",
+			"type": 301,
+			"enabled": true,
+			"groupName": "SEO test fixtures"
+		},
+		{
+			"source": "/blog/[...path]",
+			"destination": "/posts/[...path]",
+			"type": 301,
+			"enabled": true,
+			"groupName": "SEO test fixtures"
+		}
+	]
+}
