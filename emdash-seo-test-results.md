@@ -4,7 +4,7 @@ Tested November 6, 2026 on EmDash 1.4.0, using the Blog template with Node.js an
 
 ## Verdict
 
-EmDash has strong SEO foundations, but it isn't ready to launch straight from the default template. Redirects, sitemaps, robots.txt and draft handling all worked well. The default template needed fixes in 6 files, mostly small, and adding one package.
+EmDash has strong SEO foundations, but it isn't ready to launch straight from the default template. Redirects, sitemaps, robots.txt and draft handling all worked well. The default template needed a handful of small fixes, plus one added package.
 
 It suits new, content-led sites with developer support. For a large migration, test your own content first, because the WordPress import and Cloudflare hosting weren't part of this test.
 
@@ -39,6 +39,12 @@ These gaps were in the default Blog template. All of them are fixed in the demo 
 | Search result pages could be indexed | Could create a large number of low-value URLs | Add `noindex, follow` |
 | No author in article schema | The byline was visible but missing from structured data | Pass the byline to the page metadata |
 | Title Separator setting was ignored | Titles mixed `\|` and `—` across page types | Use the setting in all templates |
+| Trailing-slash URLs returned 200 | Every page had a duplicate URL that relied on its canonical | 301 to the slashless URL, after EmDash's redirect rules run |
+| Invalid pagination URLs returned 200 | `?cursor=` values past the end, or made up, gave indexable empty pages | Return a 404 when a cursor page has no posts |
+| No default favicon | Browsers requested a missing `/favicon.ico` | Serve the site's monogram at `/favicon.svg` until one is uploaded in Settings |
+| Static pages had no meta description | Pages have no excerpt field, so nothing filled the tag | Use the page's opening text, which the SEO panel description still overrides |
+
+The last four fixes were added on November 27, 2026 and checked against a local production build. They came after the performance runs below and don't affect images.
 
 The image problem appeared only in the production build, because development mode optimized images correctly. Audit a production build of any EmDash site, not just a development preview.
 
@@ -65,10 +71,8 @@ These aren't fixed in the demo, so plan for them on a real project.
 | Seed files can't carry SEO field values | Set them through the admin or API after import |
 | Hiding a page always applies `noindex, nofollow` | It also stays in the RSS feed and on listing pages, so remove it there if needed |
 | URL changes don't update links inside content | Update internal links so they don't rely on redirects |
-| Trailing-slash URLs return 200 instead of redirecting | Canonicals now cover this, but a redirect would be cleaner |
-| An invalid pagination URL returns 200 with "No more posts" | Return a 404 from the template |
+| Catch-all redirect rules keep a trailing slash, so `/blog/old-post/` takes two hops | Map old URLs with exact rules where possible |
 | The Node server sends no compression or cache headers | Put a CDN or reverse proxy in front of it |
-| No default favicon, and pages have no automatic meta description | Add both during setup |
 
 The "Disallow AI training" setting adds a `Content-Signal` line to robots.txt. Lighthouse reports this line as an unknown directive, and the SEO score dropped to about 92 in testing with the setting on. That reflects Lighthouse not recognizing the line, not a crawl problem.
 

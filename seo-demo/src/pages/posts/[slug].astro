@@ -13,6 +13,7 @@ import Base from "../../layouts/Base.astro";
 import Byline from "../../components/Byline.astro";
 import PostCard from "../../components/PostCard.astro";
 import { formatDate } from "../../utils/locale";
+import { describeContent } from "../../utils/description";
 import { getReadingTime } from "../../utils/reading-time";
 import { resolveBlogSiteIdentity } from "../../utils/site-identity";
 import "../../styles/prose.css";
@@ -63,6 +64,11 @@ const seo = getSeoMeta(post, {
 	titleSeparator: settings.seo?.titleSeparator,
 	path: Astro.url.pathname.replace(/\/$/, ""),
 	defaultOgImage: featuredImageUrl,
+	// The excerpt is the usual fallback. defaultDescription would outrank it,
+	// so only use the opening text when there is no excerpt.
+	defaultDescription: post.data.excerpt
+		? undefined
+		: describeContent(post.data.content),
 });
 
 // Bylines are already hydrated by getEmDashEntry
