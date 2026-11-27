@@ -36,6 +36,11 @@ if (Astro.cache?.enabled) {
 	Astro.cache.set(cacheHint);
 }
 
+// A cursor past the last post, or a malformed one, isn't a real page.
+if (cursor && posts.length === 0) {
+	return Astro.rewrite("/404");
+}
+
 // Single batched query for tags on every post in this category, rather
 // than calling getEntryTerms() per post (which would be one round-trip
 // per post).
@@ -99,20 +104,13 @@ const filteredPosts = posts.map((post) => ({
 					</>
 				) : (
 					<div class="empty-state">
-						<h2 class="empty-state__title">
-							{cursor ? "No more posts" : "Nothing here yet"}
-						</h2>
+						<h2 class="empty-state__title">Nothing here yet</h2>
 						<p class="empty-state__text">
-							{cursor
-								? "This page is past the last post."
-								: `No posts have been filed under ${term.label} so far.`}
+							{`No posts have been filed under ${term.label} so far.`}
 						</p>
 						<div class="empty-state__actions">
-							<a
-								href={cursor ? `/category/${term.slug}` : "/posts"}
-								class="btn btn--ghost"
-							>
-								{cursor ? "Back to the first page" : "Browse all posts"}
+							<a href="/posts" class="btn btn--ghost">
+								Browse all posts
 							</a>
 						</div>
 					</div>

@@ -7,6 +7,7 @@ import {
 } from "emdash";
 import { PortableText } from "emdash/ui";
 import Base from "../../layouts/Base.astro";
+import { describeContent } from "../../utils/description";
 import { resolveBlogSiteIdentity } from "../../utils/site-identity";
 import "../../styles/prose.css";
 
@@ -30,6 +31,8 @@ const seo = getSeoMeta(page, {
 	siteUrl: settings.url || Astro.url.origin,
 	titleSeparator: settings.seo?.titleSeparator,
 	path: Astro.url.pathname.replace(/\/$/, ""),
+	// Pages have no excerpt field, so fall back to the opening text.
+	defaultDescription: describeContent(page.data.content),
 });
 ---
 

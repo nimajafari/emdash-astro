@@ -129,6 +129,13 @@ const year = new Date().getFullYear();
 		<Font cssVariable="--font-mono" />
 		<title>{fullTitle}</title>
 		<EmDashHead page={pageCtx} />
+		{
+			// EmDashHead outputs the favicon set in Settings; fall back to the
+			// generated monogram so browsers don't request a missing /favicon.ico.
+			!settingsResult.data.favicon?.url && (
+				<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+			)
+		}
 		<link
 			rel="alternate"
 			type="application/rss+xml"
