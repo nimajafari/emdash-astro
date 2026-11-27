@@ -1,18 +1,8 @@
-# EmDash Blog Template
+# Crawl Notes
 
-A clean, minimal blog built with [EmDash](https://github.com/emdash-cms/emdash). Runs on any Node.js server with SQLite and local file storage.
+The EmDash site for this repo's technical SEO test. It started from the [EmDash Blog template](https://github.com/emdash-cms/templates/tree/main/blog) and runs on Node.js with SQLite and local file storage.
 
-![Blog template homepage](https://raw.githubusercontent.com/emdash-cms/emdash/main/assets/templates/blog/latest/homepage-light-desktop.jpg)
-
-## What's Included
-
-- Featured post hero on the homepage
-- Post archive with reading time estimates
-- Category and tag archives
-- Full-text search
-- RSS feed
-- SEO metadata and JSON-LD
-- Dark/light mode
+To run it, follow the [setup guide](../SETUP.md). For what changed from the template and why, see the [repo README](../README.md) and the [test report](../emdash-seo-test-results.md).
 
 ## Pages
 
@@ -25,38 +15,29 @@ A clean, minimal blog built with [EmDash](https://github.com/emdash-cms/emdash).
 | Tag archive | `/tag/:slug` |
 | Search | `/search` |
 | Static pages | `/pages/:slug` |
+| RSS feed | `/rss.xml` |
+| Default favicon | `/favicon.svg` |
 | 404 | fallback |
 
-## Screenshots
+EmDash generates `/sitemap.xml` and `/robots.txt`, and serves the admin at `/_emdash/admin`.
 
-| | Desktop | Mobile |
-|---|---|---|
-| Light | ![homepage light desktop](https://raw.githubusercontent.com/emdash-cms/emdash/main/assets/templates/blog/latest/homepage-light-desktop.jpg) | ![homepage light mobile](https://raw.githubusercontent.com/emdash-cms/emdash/main/assets/templates/blog/latest/homepage-light-mobile.jpg) |
-| Dark | ![homepage dark desktop](https://raw.githubusercontent.com/emdash-cms/emdash/main/assets/templates/blog/latest/homepage-dark-desktop.jpg) | ![homepage dark mobile](https://raw.githubusercontent.com/emdash-cms/emdash/main/assets/templates/blog/latest/homepage-dark-mobile.jpg) |
+## Commands
 
-## Infrastructure
+| Command | What it does |
+|---|---|
+| `pnpm dev` | Start the development server |
+| `pnpm build` | Build for production |
+| `pnpm start` | Run the production build |
+| `pnpm typecheck` | Type-check the project with `astro check` |
 
-- **Runtime:** Node.js
-- **Database:** SQLite (local file)
-- **Storage:** Local filesystem
-- **Framework:** Astro with `@astrojs/node`
+Audit a production build, not just `pnpm dev`. Image optimization only failed in production during testing.
 
-## Getting Started
+## Where things live
 
-```bash
-pnpm install
-pnpm dev
-```
-
-Open http://localhost:4321/_emdash/admin and complete the setup wizard. EmDash runs database migrations and applies the blog seed during setup. The site is available at http://localhost:4321.
-
-## Want Cloudflare Instead?
-
-See the [Cloudflare variant](../blog-cloudflare) for a version that deploys to Cloudflare Workers with D1 and R2.
-
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/emdash-cms/templates/tree/main/blog-cloudflare)
-
-## See Also
-
-- [All templates](../)
-- [EmDash documentation](https://docs.emdashcms.com/)
+| Path | Contents |
+|---|---|
+| `seed/seed.json` | Demo content, menus and redirect rules |
+| `src/layouts/Base.astro` | Head tags, canonicals, favicon fallback, header and footer |
+| `src/middleware.ts` | Trailing-slash redirects |
+| `src/pages/` | Page routes |
+| `src/utils/description.ts` | Meta description fallback from page content |

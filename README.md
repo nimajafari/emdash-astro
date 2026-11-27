@@ -41,6 +41,9 @@ Once it's running, the site is usually at `http://localhost:4321` and the admin 
 - Added `noindex, follow` to search pages
 - Added the author to article metadata and structured data
 - Made page titles follow the Title Separator setting
+- Redirected trailing-slash URLs to the slashless version with a 301
+- Returned a 404 for pagination pages past the last post
+- Added a default favicon and a meta description fallback for static pages
 
 ## Before deploying
 
