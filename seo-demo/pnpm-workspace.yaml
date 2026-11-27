@@ -13,3 +13,12 @@ minimumReleaseAgeExclude:
   - emdash
   - "@emdash-cms/*"
 blockExoticSubdeps: true
+
+# @astrojs/check's WASM type checker (astro2tsx) ships @emnapi/core 1.x but
+# leaves @emnapi/runtime to peer resolution, which picks 2.0.0-beta.2. That
+# mismatch crashes `astro check` on load ("this.bridge.setLastError is not a
+# function"). Give astro2tsx a matching runtime of its own.
+packageExtensions:
+  "@astrojs/astro2tsx@0.1":
+    dependencies:
+      "@emnapi/runtime": 1.11.3
